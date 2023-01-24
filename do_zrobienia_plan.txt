@@ -1,0 +1,4 @@
+1. formularz dodania uzytkownika z wyborem rentiera,
+2. formularz dodania przez użytkownika miejsca postojowego,
+3. formularz wyszukania miejsca postojowego,
+4. formularz rezerwacji miejsca postojowego, (z opcją opłaty w przyszłości),

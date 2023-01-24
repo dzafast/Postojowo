@@ -1,0 +1,1 @@
+alert('UWAGA Nie jesteś zalogowany!');

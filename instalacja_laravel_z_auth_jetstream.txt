@@ -1,0 +1,7 @@
+1. composer create-project --prefer-dist laravel/laravel laravel8auth
+2. phpMyAdmin utworzenie bazy danych
+3. połaczenie bazy danych z naszym projektem (.env)
+4. composer require laravel/jetstream
+5. php artisan jetstream:install livewire
+6. php artisan migrate
+7. php artisan serve

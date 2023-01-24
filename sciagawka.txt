@@ -1,0 +1,73 @@
+Błąd
+
+Zapytanie SQL: Kopiuj
+
+ALTER TABLE `parking_users` DROP `parking_id`;
+
+MySQL zwrócił komunikat: Dokumentacja
+#1828 - Cannot drop column 'parking_id': needed in a foreign key constraint 'postojowobd/parking_users_parking_id_foreign'
+
+
+php artisan migrate
+
+php artisan make:migration add_users_details
+ (dodawanie rekordów do istniejącej bazy(tabeli))
+----------------------------------------------------------------------------------
+$table->unsignedBigInteger('user_id');
+$table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+
+-----------------------------------------------------------------------------------
+
+podczas migracji wystepował błąd:
+
+SQLSTATE[HY000]: General error: 1005 Can't create table `postojowobd`.`parking_users` (errno: 150 "Foreign key constraint is incorrectly formed") (SQL: alter table `parking_users` add constraint `parking_users_user_id_foreign` foreign key (`user_id`) references `users` (`id`) on delete cascade)
+
+tabela tworzyła się ale nie było powiązania klucza obcego user_id z tabelą users, pomogła zmiana deklaracji Integer na: $table->unsignedBigInteger('user_id');
+
+---------------------------------------------------------------------------------------------
+
+przykładowa poprawna deklaracji tabeli:
+public function up()
+    {
+        Schema::create('meals', function (Blueprint $table) {
+            $table->increments('id');
+            $table->unsignedBigInteger('user_id'); //changed this line
+            $table->unsignedBigInteger('category_id'); //changed this line
+            $table->string('title');
+            $table->string('body');
+            $table->string('meal_av');
+            $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('category_id')
+                ->references('id')
+                ->on('categories')
+                ->onDelete('cascade');
+        });
+    } 
+
+-------------------------------------------------------------------------------------------
+
+Wazne jest aby klucze obce podczas łaczenia z kluczami tabeli były tego samego typu....
+int(10) -> int(10), bigint(20)->bigint(20)
+-------------------------------------------------------------------------------------------
+
+DODAWANIE KATALOGU Auth do istniejącego projektu
+1. composer require laravel/ui (rozpakowanie instalacja i updating )
+2. php artisan ui vue --auth  (wygenerowanie katalogu Auth w projekcie)
+
+
+PROSTY PRZYCISK WYLOGUJ:
+<li class="nav-item">
+                          <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                              @csrf
+                              <button class="btn btn-primary mb-2" type="submit">
+                                  {{ __('wyloguj') }}
+                              </button>
+                          </form>
+                        </li>
+

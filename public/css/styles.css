@@ -1,0 +1,28 @@
+footer{
+    background-color: rgb(169, 169, 169);
+    padding: 10px 10px;
+    margin-top: 50px;
+}
+
+nav{
+    margin-bottom: 50px;
+}
+.margines{
+    padding-top: 50px;
+}
+
+.column{
+    padding-left: 15%;
+    margin-left: 10%;
+}
+.space{
+    max-width: 10px;
+}
+
+.center{
+    margin-top: 20px;
+}
+.left{
+    margin-left: 10px;
+}
+

@@ -1,0 +1,14 @@
+Dotyczy błędu: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails - Laravel
+
+Witam mam taki problem:
+Stworzyłem m.in dwie takie tabele Użytkownicy i wyzyty, klucze obce są stworzone itd
+Jeżeli użytkownik ma zaplanowaną wizytę, nie mogę go usunąć. Gdy użytkownik nie ma zaplanowanej wizyty mogę go usunąć.
+
+SQLSTATE[23000]: Integrity constraint violation: 1451 Cannot delete or update a parent row: a foreign key constraint fails (`system`.`visits`, CONSTRAINT `visits_doctor_id_foreign` FOREIGN KEY (`doctor_id`) REFERENCES `users` (`id`)) (SQL: delete from `users` where `id` = 10)
+
+
+To nie problem, to właściwe zachowanie bazy danych. Skoro są jakieś powiązania, czyli użytkownik ma wizyty, to domyślnie nie można go usunąć.
+
+Musisz najpierw usunąć wszystkie powiązania z użytkownikiem (w tym przypadku wizyty) i dopiero go usunąć lub zmienić relację dodając co ma się stać z relacją podczas usuwania (ON DELETE), np. że w momencie usuwania użytkownika mają zostać usunięte także jego wizyty (opcja CASCADE) albo że ma zostać wstawiony null zamiast jego id przy wizycie (opcja SET NULL). Wszystko zależy co chcesz uzyskać.
+
+Szczegóły: https://dev.mysql.com/doc/refman/8.0/en/create-table-foreign-keys.html W Laravelu można to określić metodą metodą ->onDelete() na definicji relacji w migracji.

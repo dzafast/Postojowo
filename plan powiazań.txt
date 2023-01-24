@@ -1,0 +1,3 @@
+Wyszukiwanie usług
+zalogowany uzytkownik -> Usługi -> wybór lokalizacji (państwo, województwo, miasto, ulica) -> rentier -> data
+
