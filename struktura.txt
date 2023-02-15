@@ -1,0 +1,16 @@
+Struktura serwisu postojowo:
+
+Users --> owner(rentier) --> leaser
+
+mamy uzytkowników, którzy dzielą się na włascicieli i wynajmujących, z tym że zarówno wynajmujacy moa być właścicielami i włąściciele wynajmującymi.
+
+W trakcie rejestracji Użytkownik dekladuje czy jest właścicielem miejsca postojowego, jeśli jest to wypenia dodatkowy formularz:
+- dokładny adres z potwierdzeniem lokalizacji na mapie,
+- ogólny opis ułatwiajacy dotarcie do jego miejsca,
+- zdjęcie wjazdu, parkingu lub budynku (w celu łatwej dentyfikacji miejsca),
+- nr miejsca postojowego (w przyszłości będą nadawany nr identyfikacyjny przez postojowo, np. wysyłana naklejka lb lilka naklejek),
+- rodzaj dostępu do miejsca,
+	- pilot,
+	- karta,
+	- straznik,
+	- wiazd wolny, 
